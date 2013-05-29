@@ -2,11 +2,9 @@ allprojects {
     defaultTasks 'clean', 'build'
 }
 
-subprojects {
-    apply plugin: 'maven'
+subprojects {}
     apply plugin: 'groovy'
     apply plugin: 'idea'
-    apply plugin: 'eclipse'
 
     buildDir = 'target'
     version = '1.0-SNAPSHOT'

@@ -10,6 +10,9 @@ class CreditCardValidator {
     }
 
     static def calculateLuhnValueOfStringDigits(String aCreditCardNumber) {
+        aCreditCardNumber.getChars().each {
+
+        }
         return 1;
     }
 }
