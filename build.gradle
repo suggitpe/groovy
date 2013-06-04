@@ -2,7 +2,7 @@ allprojects {
     defaultTasks 'clean', 'build'
 }
 
-subprojects {}
+subprojects {
     apply plugin: 'groovy'
     apply plugin: 'idea'
 
