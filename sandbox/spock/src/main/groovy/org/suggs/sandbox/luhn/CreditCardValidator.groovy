@@ -1,18 +1,39 @@
 package org.suggs.sandbox.luhn
 
+import groovy.util.logging.Slf4j
+
+@Slf4j
 class CreditCardValidator {
 
-    static def validate(String aCreditCardNumber){
+    public static final int ZERO = 0
 
-        if(calculateLuhnValueOfStringDigits(aCreditCardNumber).mod(10) != 0 ){
-            throw new CreditCardException();
+    def validate(String aCreditCardNumber) {
+        if (calculateLuhnValueOfStringDigits(aCreditCardNumber).mod(10) != 0) {
+            throw new CreditCardException()
         }
     }
 
-    static def calculateLuhnValueOfStringDigits(String aCreditCardNumber) {
-        aCreditCardNumber.getChars().each {
+    def calculateLuhnValueOfStringDigits(String aCreditCardNumber) {
+        calculateLuhnValueFromEvenDigit(
+                aCreditCardNumber
+                        .reverse()
+                        .replace(' ', '')
+                        .toList())
+    }
 
-        }
-        return 1;
+    def calculateLuhnValueFromEvenDigit(List aListOfDigits) {
+        aListOfDigits.isEmpty() \
+        ? ZERO
+        : (aListOfDigits.head() as int) + calculateDoubledLuhnValueFromOddDigit(aListOfDigits.tail())
+    }
+
+    def calculateDoubledLuhnValueFromOddDigit(List aListOfDigits) {
+        aListOfDigits.isEmpty() \
+        ? ZERO
+        : doubleValueAndAddDigitsFrom(aListOfDigits) + calculateLuhnValueFromEvenDigit(aListOfDigits.tail())
+    }
+
+    private int doubleValueAndAddDigitsFrom(List aCreditCardNumberTail) {
+        ((aCreditCardNumberTail.head() as int) % 10) + 1
     }
 }
