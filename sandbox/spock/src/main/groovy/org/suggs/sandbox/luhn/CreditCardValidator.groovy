@@ -22,18 +22,18 @@ class CreditCardValidator {
     }
 
     def calculateLuhnValueFromEvenDigit(List aListOfDigits) {
-        aListOfDigits.isEmpty() \
-        ? ZERO
+        aListOfDigits.isEmpty()  \
+         ? ZERO
         : (aListOfDigits.head() as int) + calculateDoubledLuhnValueFromOddDigit(aListOfDigits.tail())
     }
 
     def calculateDoubledLuhnValueFromOddDigit(List aListOfDigits) {
-        aListOfDigits.isEmpty() \
-        ? ZERO
-        : doubleValueAndAddDigitsFrom(aListOfDigits) + calculateLuhnValueFromEvenDigit(aListOfDigits.tail())
+        aListOfDigits.isEmpty()  \
+         ? ZERO
+        : doubleValueAndAdd(aListOfDigits.head()) + calculateLuhnValueFromEvenDigit(aListOfDigits.tail())
     }
 
-    private int doubleValueAndAddDigitsFrom(List aCreditCardNumberTail) {
-        ((aCreditCardNumberTail.head() as int) % 10) + 1
+    def doubleValueAndAdd(String aDigit) {
+        ((aDigit as int) % 10) + 1
     }
 }
