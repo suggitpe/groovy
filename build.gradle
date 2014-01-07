@@ -11,7 +11,6 @@ subprojects {
     apply plugin: 'groovy'
     apply plugin: 'idea'
 
-    buildDir = 'target'
     version = '1.0-SNAPSHOT'
     group = 'org.suggs.sandbox'
 
